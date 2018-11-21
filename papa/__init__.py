@@ -416,7 +416,8 @@ class Papa(object):
                     raise utils.Error('stderr must be DEVNULL, PIPE or STDOUT')
         if env:
             for key, value in env.items():
-                command.append('env.{0}={1}'.format(key, wrap_trailing_slash(value)))
+                if (len(str(value)) > 0):
+                    command.append('env.{0}={1}'.format(key, wrap_trailing_slash(value)))
         if rlimits:
             for key, value in rlimits.items():
                 command.append('rlimit.{0}={1}'.format(key.lower(), value))
